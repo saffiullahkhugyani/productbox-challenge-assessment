@@ -11,7 +11,12 @@ import placeholder from "../assets/placeholder.svg";
 import { Search, Plus, Star, Heart, ShoppingCart } from "lucide-react";
 import { Button } from "./ui/button";
 
-export default function ItemCard({ product }) {
+export default function ItemCard({ product, setProductId }) {
+  // handle add to cart function
+  const handleAddToCart = (id) => {
+    setProductId(id);
+  };
+
   return (
     <Card className={"group hover:shadow-lg cursor-pointer pt-0"}>
       <CardHeader className={"p-0"}>
@@ -50,7 +55,9 @@ export default function ItemCard({ product }) {
         </CardDescription>
         <div className="flex justify-between items-center">
           <span>PKR {product.price}</span>
-          <Button>Add to Cart</Button>
+          <Button onClick={() => handleAddToCart(product.id)}>
+            Add to Cart
+          </Button>
         </div>
       </CardContent>
     </Card>

@@ -1,5 +1,5 @@
-import React from 'react';
-import backgroundImage from '../assets/landing-background.jpg';
+import React from "react";
+import backgroundImage from "../assets/landing-background.jpg";
 
 export default function HomePage() {
   return (
@@ -9,10 +9,10 @@ export default function HomePage() {
         className="absolute inset-0 z-0"
         style={{
           backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          filter: 'brightness(0.7)',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          filter: "brightness(0.7)",
         }}
       ></div>
 
@@ -23,19 +23,10 @@ export default function HomePage() {
             Where random finds become treasures
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
-            SUB headline.
+            A Marketplace where for everyone for eveything.
           </p>
         </div>
       </main>
-
-      {/* Footer */}
-      {/* <footer className="relative z-10 bg-gray-100 bg-opacity-80 text-white py-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-gray-400 text-sm">
-            © {new Date().getFullYear()} ProductBox. All rights reserved.
-          </p>
-        </div>
-      </footer> */}
     </div>
   );
 }

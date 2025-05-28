@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CheckoutItem from "../components/checkout-item";
 import CheckoutShippingForm from "../components/checkout-shipping-form";
 
-export default function Checkout() {
+export default function Checkout({ allCartProducts }) {
+  useEffect(() => {
+    console.log(allCartProducts);
+  }, [allCartProducts]);
   return (
     <div className="min-h-sreen">
       <section className="py-8">
@@ -16,23 +19,49 @@ export default function Checkout() {
         <div className="bg-white p-8 rounded-lg shadow items-center">
           <div className="flex items-center justify-center space-x-4 mb-4">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-medium">
+              <div
+                className={`w-8 h-8 ${
+                  allCartProducts.length > 0
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-muted-foreground"
+                }  rounded-full flex items-center justify-center text-sm font-medium`}
+              >
                 1
               </div>
               <span className="font-medium">Cart</span>
             </div>
-            <div className="w-25 h-px bg-primary"></div>
+            <div
+              className={`w-25 h-px ${
+                allCartProducts.length > 0 ? "bg-primary" : "bg-muted"
+              }`}
+            ></div>
 
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-medium">
+              <div
+                className={`w-8 h-8 ${
+                  allCartProducts.length > 0
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-muted-foreground "
+                }  rounded-full flex items-center justify-center text-sm font-medium`}
+              >
                 2
               </div>
               <span>Shipping</span>
             </div>
-            <div className="w-25 h-px bg-muted"></div>
+            <div
+              className={`w-25 h-px ${
+                allCartProducts.length > 0 ? "bg-primary" : "bg-muted"
+              }`}
+            ></div>
 
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-muted text-muted-foreground rounded-full flex items-center justify-center text-sm font-medium">
+              <div
+                className={`w-8 h-8 ${
+                  allCartProducts.length > 0
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-muted-foreground"
+                }  rounded-full flex items-center justify-center text-sm font-medium`}
+              >
                 3
               </div>
               <span className="text-muted-foreground">Payment</span>
@@ -43,7 +72,7 @@ export default function Checkout() {
 
       {/*checkout items section*/}
       <section className="container mx-auto px-4 pb-4">
-        <CheckoutItem />
+        <CheckoutItem checkOutItems={allCartProducts} />
       </section>
 
       {/*section for shipping detail form*/}
