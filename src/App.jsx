@@ -11,7 +11,7 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className='min-h-screen bg-gray-50'>
+    <div className='bg-gray-100'>
       {/* nav bar*/}
       <Nav />
       
