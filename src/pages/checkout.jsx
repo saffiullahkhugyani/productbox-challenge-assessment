@@ -27,7 +27,7 @@ export default function Checkout({ allCartProducts }) {
             <div className="flex items-center space-x-2">
               <div
                 className={`w-8 h-8 ${
-                  allCartProducts.length > 0
+                  cartAddedProduct.length > 0
                     ? "bg-primary text-primary-foreground"
                     : "bg-muted text-muted-foreground"
                 }  rounded-full flex items-center justify-center text-sm font-medium`}
@@ -38,14 +38,14 @@ export default function Checkout({ allCartProducts }) {
             </div>
             <div
               className={`w-25 h-px ${
-                allCartProducts.length > 0 ? "bg-primary" : "bg-muted"
+                cartAddedProduct.length > 0 ? "bg-primary" : "bg-muted"
               }`}
             ></div>
 
             <div className="flex items-center space-x-2">
               <div
                 className={`w-8 h-8 ${
-                  allCartProducts.length > 0
+                  cartAddedProduct.length > 0
                     ? "bg-primary text-primary-foreground"
                     : "bg-muted text-muted-foreground "
                 }  rounded-full flex items-center justify-center text-sm font-medium`}

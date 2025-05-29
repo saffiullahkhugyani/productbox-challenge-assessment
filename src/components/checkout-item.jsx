@@ -1,53 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Link } from "react-router-dom";
-import placeholder from "../assets/placeholder.svg";
-import { Star, Trash, Trash2, Truck } from "lucide-react";
-
-const sampleCartItems = [
-  {
-    id: 1,
-    title: "Vintage Polaroid Camera",
-    price: 89.99,
-    seller: "PhotoEnthusiast",
-    rating: 4.8,
-    reviews: 24,
-    image: "/placeholder.png",
-    category: "Electronics",
-    condition: "Used - Good",
-    quantity: 1,
-    shipping: 8.99,
-    estimatedDelivery: "3-5 business days",
-  },
-  {
-    id: 2,
-    title: "Hand-knitted Wool Scarf",
-    price: 35.0,
-    seller: "CraftyGrandma",
-    rating: 5.0,
-    reviews: 12,
-    image: "/placeholder.png",
-    category: "Fashion",
-    condition: "New",
-    quantity: 2,
-    shipping: 0,
-    estimatedDelivery: "2-4 business days",
-  },
-  {
-    id: 3,
-    title: "Rare Pokemon Card Collection",
-    price: 250.0,
-    seller: "CardMaster99",
-    rating: 4.9,
-    reviews: 8,
-    image: "/placeholder.png",
-    category: "Collectibles",
-    condition: "Mint",
-    quantity: 1,
-    shipping: 15.99,
-    estimatedDelivery: "5-7 business days",
-  },
-];
+import { Star, Trash2, Truck } from "lucide-react";
 
 export default function CheckoutItem({ checkOutItems }) {
   const [products, setProducts] = useState([]);

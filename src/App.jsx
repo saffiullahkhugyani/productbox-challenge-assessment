@@ -16,6 +16,7 @@ function App() {
     try {
       const response = await axios.get("http://localhost:3000/items");
       setProducts(response.data);
+      console.log(response.data);
     } catch (error) {
       console.log("error fetching products", error);
     }

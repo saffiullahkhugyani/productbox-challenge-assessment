@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardContent,
@@ -12,6 +12,9 @@ import { Star, Heart } from "lucide-react";
 import { Button } from "./ui/button";
 
 export default function ItemCard({ product, setProductId }) {
+  const [imageUrl, setImageUrl] = useState(
+    `http://localhost:3000/${product.img}`
+  );
   // handle add to cart function
   const handleAddToCart = (product) => {
     let storedProducts = [];
@@ -32,16 +35,21 @@ export default function ItemCard({ product, setProductId }) {
     }
   };
 
+  console.log(product);
+
   return (
     <Card className={"group hover:shadow-lg cursor-pointer pt-0"}>
       <CardHeader className={"p-0"}>
         <div className="relative overflow-hidden rounded-t-lg">
           <img
-            src={`http://localhost:3000/${product.img}`}
+            src={imageUrl}
             alt={product.title}
             width={300}
             height={300}
             className="w-full h-48 object-cover group-hover:scale-102 transition-transform duration-250"
+            onError={(e) => {
+              e.currentTarget.src = placeholder;
+            }}
           />
           <Badge className="absolute top-2 right-2 bg-white text-black">
             Good
