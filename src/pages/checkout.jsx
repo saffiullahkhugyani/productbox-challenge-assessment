@@ -1,10 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import CheckoutItem from "../components/checkout-item";
 import CheckoutShippingForm from "../components/checkout-shipping-form";
 
 export default function Checkout({ allCartProducts }) {
+  const [cartAddedProduct, setCartAddedProducts] = useState([]);
+
   useEffect(() => {
-    console.log(allCartProducts);
+    let cartProducts = [];
+    if (localStorage.getItem("products")) {
+      cartProducts = JSON.parse(localStorage.getItem("products"));
+      setCartAddedProducts(cartProducts);
+    }
   }, [allCartProducts]);
   return (
     <div className="min-h-sreen">
@@ -72,7 +78,7 @@ export default function Checkout({ allCartProducts }) {
 
       {/*checkout items section*/}
       <section className="container mx-auto px-4 pb-4">
-        <CheckoutItem checkOutItems={allCartProducts} />
+        <CheckoutItem checkOutItems={cartAddedProduct} />
       </section>
 
       {/*section for shipping detail form*/}

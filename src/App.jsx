@@ -6,9 +6,24 @@ import AddItems from "./pages/addItems";
 import Items from "./pages/items";
 import Checkout from "./pages/checkout";
 import HomePage from "./pages/homePage";
+import axios from "axios";
 
 function App() {
   const [allCartProducts, setAllCartIProducts] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/items");
+      setProducts(response.data);
+    } catch (error) {
+      console.log("error fetching products", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   return (
     <div className="bg-gray-100">
@@ -22,7 +37,12 @@ function App() {
           <Route path="/addItems" element={<AddItems />} />
           <Route
             path="/items"
-            element={<Items setAllCartProducts={setAllCartIProducts} />}
+            element={
+              <Items
+                products={products}
+                setAllCartProducts={setAllCartIProducts}
+              />
+            }
           />
           <Route
             path="/checkout"

@@ -55,6 +55,7 @@ export default function CheckoutItem({ checkOutItems }) {
   useEffect(() => {
     if (checkOutItems.length == 0) return;
     setProducts(checkOutItems);
+    console.log(checkOutItems);
   }, [checkOutItems]);
 
   // Function: handle delete item
@@ -64,6 +65,19 @@ export default function CheckoutItem({ checkOutItems }) {
   };
 
   const removeItem = (idToRemove) => {
+    let storedProducts = [];
+    if (localStorage.getItem("products")) {
+      storedProducts = JSON.parse(localStorage.getItem("products"));
+    }
+    // Updated products after removing the item
+    const updatedProducts = storedProducts.filter(
+      (item) => item.id !== idToRemove
+    );
+
+    // Update localStorage with the remove item from the list
+    localStorage.setItem("products", JSON.stringify(updatedProducts));
+
+    // setting the sate after removing the product
     setProducts((products) =>
       products.filter((item) => item.id !== idToRemove)
     );
@@ -95,20 +109,25 @@ export default function CheckoutItem({ checkOutItems }) {
                   key={item.id}
                   className="flex border rounded shadow hover:shadow-lg hover:pointer hover:bg-gray-50"
                 >
-                  <img src={placeholder} width={200} height={200} />
+                  <img
+                    src={`http://localhost:3000/${item.img}`}
+                    width={200}
+                    height={200}
+                    className="h-48 object-cover group-hover:scale-102 transition-transform duration-250"
+                  />
                   <div className=" w-full flex justify-between m-4 ">
                     <div className="flex flex-col justify-between">
                       <div>
-                        <span className="text-lg font-bold">{item.title}</span>
+                        <span className="text-lg font-bold">{item.name}</span>
                         <div className="flex items-center space-x-1 mb-4 text-muted-foreground">
                           <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                          <span>{item.rating}</span>
-                          <span>({item.reviews} reviews)</span>
+                          <span>4.6</span>
+                          <span>(6 reviews)</span>
                         </div>
                       </div>
                       <div>
                         <span className="text-md text-muted-foreground font-semibold">
-                          Sold by {item.seller}
+                          Sold by Rando User
                         </span>
                       </div>
                     </div>
@@ -118,7 +137,7 @@ export default function CheckoutItem({ checkOutItems }) {
                         className="w-4 h-4 text-red-400 mt-2 mr-2 hover:transition hover:h-6 hover:w-6"
                       />
                       <div className="flex flex-col items-end">
-                        <span className="text-lg font-bold">PKR 799</span>
+                        <span className="text-lg font-bold">{item.price}</span>
                         <span className="text-muted-foreground text-sm">
                           + 349 shipping
                         </span>

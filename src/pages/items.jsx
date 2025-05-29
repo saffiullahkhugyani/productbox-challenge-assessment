@@ -3,75 +3,6 @@ import { Button } from "@/components/ui/button";
 import React, { useEffect, useState } from "react";
 import { Badge } from "../components/ui/badge";
 
-const featuredProducts = [
-  {
-    id: 1,
-    title: "Vintage Polaroid Camera",
-    price: 89.99,
-    seller: "PhotoEnthusiast",
-    rating: 4.8,
-    reviews: 24,
-    image: "/placeholder.svg?height=300&width=300",
-    category: "Electronics",
-    condition: "Used - Good",
-  },
-  {
-    id: 2,
-    title: "Hand-knitted Wool Scarf",
-    price: 35.0,
-    seller: "CraftyGrandma",
-    rating: 5.0,
-    reviews: 12,
-    image: "/placeholder.svg?height=300&width=300",
-    category: "Fashion",
-    condition: "New",
-  },
-  {
-    id: 3,
-    title: "Rare Pokemon Card Collection",
-    price: 250.0,
-    seller: "CardMaster99",
-    rating: 4.9,
-    reviews: 8,
-    image: "/placeholder.svg?height=300&width=300",
-    category: "Collectibles",
-    condition: "Mint",
-  },
-  {
-    id: 4,
-    title: "Homemade Sourdough Starter",
-    price: 15.0,
-    seller: "BreadLover",
-    rating: 4.7,
-    reviews: 31,
-    image: "/placeholder.svg?height=300&width=300",
-    category: "Food",
-    condition: "Fresh",
-  },
-  {
-    id: 5,
-    title: "Custom Gaming Setup",
-    price: 1200.0,
-    seller: "TechGuru",
-    rating: 4.9,
-    reviews: 15,
-    image: "/placeholder.svg?height=300&width=300",
-    category: "Electronics",
-    condition: "Like New",
-  },
-  {
-    id: 6,
-    title: "Antique Brass Compass",
-    price: 75.0,
-    seller: "VintageHunter",
-    rating: 4.6,
-    reviews: 19,
-    image: "/placeholder.svg?height=300&width=300",
-    category: "Antiques",
-    condition: "Used - Fair",
-  },
-];
-
 const categories = [
   "Electronics",
   "Fashion",
@@ -83,15 +14,13 @@ const categories = [
   "Food",
 ];
 
-export default function Items({ setAllCartProducts }) {
+export default function Items({ products, setAllCartProducts }) {
   const [productId, setProductId] = useState(0);
   const [allCartItems, setAllCartItems] = useState([]);
 
   useEffect(() => {
     if (productId == 0) return;
-    const filteredObj = featuredProducts.filter(
-      (product) => product.id == productId
-    );
+    const filteredObj = products.filter((product) => product.id == productId);
     setAllCartItems([...allCartItems, ...filteredObj]);
     // alert(`your item ${filteredObj.at(0).title} has been added to cart`);
   }, [productId]);
@@ -131,7 +60,7 @@ export default function Items({ setAllCartProducts }) {
             <Button variant={"outline"}>View all</Button>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredProducts.map((item) => (
+            {products.map((item) => (
               <ItemCard
                 product={item}
                 setProductId={setProductId}
