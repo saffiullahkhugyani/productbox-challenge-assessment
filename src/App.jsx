@@ -9,7 +9,7 @@ import HomePage from "./pages/homePage";
 import axios from "axios";
 
 function App() {
-  const [allCartProducts, setAllCartIProducts] = useState([]);
+  const [allCartProducts, setAllCartProducts] = useState([]);
   const [products, setProducts] = useState([]);
 
   const fetchProducts = async () => {
@@ -34,20 +34,20 @@ function App() {
       {/* main content */}
       <div>
         <Routes>
-          <Route path="/homePage" element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/addItems" element={<AddItems />} />
           <Route
             path="/items"
             element={
               <Items
                 products={products}
-                setAllCartProducts={setAllCartIProducts}
+                setAllCartProducts={setAllCartProducts}
               />
             }
           />
           <Route
             path="/checkout"
-            element={<Checkout allCartProducts={allCartProducts} />}
+            element={<Checkout allCartProducts={allCartProducts} setAllCartProducts={setAllCartProducts}/>}
           />
         </Routes>
       </div>

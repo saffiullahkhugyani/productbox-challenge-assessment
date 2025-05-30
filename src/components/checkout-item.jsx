@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Star, Trash2, Truck } from "lucide-react";
 
-export default function CheckoutItem({ checkOutItems }) {
+export default function CheckoutItem({ checkOutItems, setAllCartProducts }) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -15,6 +15,7 @@ export default function CheckoutItem({ checkOutItems }) {
   const handleDeleteItem = (productId) => {
     if (products.length == 0) return;
     removeItem(productId);
+
   };
 
   const removeItem = (idToRemove) => {
@@ -34,6 +35,9 @@ export default function CheckoutItem({ checkOutItems }) {
     setProducts((products) =>
       products.filter((item) => item.id !== idToRemove)
     );
+
+    // setting state for update in cart icon badge
+    setAllCartProducts(products);
   };
 
   return (
